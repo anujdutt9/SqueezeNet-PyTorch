@@ -17,7 +17,7 @@ class FireModule(nn.Module):
         super(FireModule, self).__init__()
 
         # Squeeze Layer - 1 x 1 Convolution Layer (Pointwise Convolution)
-        self.conv1 = nn.Conv2d(in_channels=in_planes, out_channels=squeeze_planes, kernel_size=(1, 1), stride=(1, 1))
+        self.squeeze1x1 = nn.Conv2d(in_channels=in_planes, out_channels=squeeze_planes, kernel_size=(1, 1), stride=(1, 1))
         self.bn1 = nn.BatchNorm2d(squeeze_planes)
 
         # Excite Layer - (1x1 Convolution, 3x3 Convolution)
@@ -42,7 +42,7 @@ class FireModule(nn.Module):
 
     def forward(self, x):
         # Input - Squeeze Layer
-        x = self.conv1(x)
+        x = self.squeeze1x1(x)
         x = self.bn1(x)
         x = self.relu(x)
 
@@ -122,8 +122,7 @@ class SqueezeNet(nn.Module):
         # Average Pool Layer
         self.avg_pool = nn.AvgPool2d(kernel_size=(13, 13), stride=(1, 1))
 
-        # Try Adaptive Average Pooling
-        # We need an output_size of (1,1)
+        # Use Adaptive Average Pooling for random input image size
         # self.avgpool = nn.AdaptiveAvgPool2d((1, 1))
 
         # Output Activation

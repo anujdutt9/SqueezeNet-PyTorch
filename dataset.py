@@ -26,8 +26,8 @@ if __name__ == '__main__':
         [transforms.Resize(224),
          transforms.RandomHorizontalFlip(),
          transforms.ToTensor(),
-         transforms.Normalize([0.491399689874, 0.482158419622, 0.446530924224],
-                              [0.247032237587, 0.243485133253, 0.261587846975]),
+         transforms.Normalize([0.5, 0.5, 0.5],
+                              [0.5, 0.5, 0.5]),
          ])
 
     classes = ('plane', 'car', 'bird', 'cat',
@@ -47,6 +47,7 @@ if __name__ == '__main__':
     img = img.permute(1, 2, 0)
     img = img.numpy()
     img = img.clip(min=0, max=1)
+    plt.title(classes[label])
     plt.imshow(img)
     plt.show()
     print(f"Label: {classes[label]}")
