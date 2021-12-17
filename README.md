@@ -1,6 +1,6 @@
 # SqueezeNet PyTorch Implementation
 
-This repository is an attempt at implementing SqueezeNet paper using PyTorch.
+This repository is an attempt at implementing the paper "[SqueezeNet: AlexNet-level accuracy with 50x fewer parameters and <0.5MB model size](https://arxiv.org/abs/1602.07360)" using PyTorch.
 
 # Setup
 
